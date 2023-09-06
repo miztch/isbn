@@ -24,7 +24,7 @@ $ isbn 9781098105716
 
 ## Build
 
-- simple run `make`.
+- This repository has Makefile. Simply run `make`.
 
 ## License
 

@@ -12,7 +12,11 @@ vet: lint
 		go vet
 .PHONY: vet
 
-build: vet
+test: vet
+		go test
+.PHONY: test
+
+build: test
 		go mod tidy
 		go build
 .PHONY: build
