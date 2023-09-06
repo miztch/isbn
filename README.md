@@ -24,10 +24,7 @@ $ isbn 9781098105716
 
 ## Build
 
-```bash
-$ go mod tidy
-$ go build
-```
+- simple run `make`.
 
 ## License
 
