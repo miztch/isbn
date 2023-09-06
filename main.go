@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func sliceAtoi(sliceArray []string) ([]int, error) {
+func SliceAtoi(sliceArray []string) ([]int, error) {
 	sliceInteger := []int{}
 
 	// Convert a slice of strings to a slice of integers
@@ -24,14 +24,14 @@ func sliceAtoi(sliceArray []string) ([]int, error) {
 	return sliceInteger, nil
 }
 
-func getIsbn10(isbn13 string) (string, error) {
+func GetIsbn10(isbn13 string) (string, error) {
 
 	// 1. Remove the first 3 characters and the last character of ISBN13 to obtain a 9-digit number.
 	body := isbn13[3:12]
 
 	// 2. Multiply each digit of the result from step 1 by 10, 9, 8, ..., 2, and calculate the sum.
 	baseStrings := strings.Split(body, "")
-	base, err := sliceAtoi(baseStrings)
+	base, err := SliceAtoi(baseStrings)
 	if err != nil {
 		return "error occured", err
 	}
@@ -61,7 +61,7 @@ func getIsbn10(isbn13 string) (string, error) {
 
 }
 
-func getIsbn13(isbn10 string) (string, error) {
+func GetIsbn13(isbn10 string) (string, error) {
 
 	// 1. Add "978" to the beginning of ISBN10 string
 	body := "978" + isbn10[:9]
@@ -69,7 +69,7 @@ func getIsbn13(isbn10 string) (string, error) {
 	// 2. Sum the digits at even positions (2nd, 4th, 6th, ..., 12th)
 	//    and triple the digits at odd positions (1st, 3rd, 5th, ..., 13th).
 	baseStrings := strings.Split(body, "")
-	base, err := sliceAtoi(baseStrings)
+	base, err := SliceAtoi(baseStrings)
 	if err != nil {
 		return "error occured", err
 	}
@@ -126,9 +126,9 @@ func _main() int {
 	if len(inputIsbnCode) != 10 && len(inputIsbnCode) != 13 {
 		isbnCode, err = "", errors.New("error: the order of input ISBN code is incorrect.(10 or 13 digits are allowed)")
 	} else if len(inputIsbnCode) == 10 {
-		isbnCode, err = getIsbn13(inputIsbnCode)
+		isbnCode, err = GetIsbn13(inputIsbnCode)
 	} else if len(inputIsbnCode) == 13 {
-		isbnCode, err = getIsbn10(inputIsbnCode)
+		isbnCode, err = GetIsbn10(inputIsbnCode)
 	}
 
 	// Output
